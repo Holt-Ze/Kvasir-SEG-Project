@@ -1,0 +1,33 @@
+# 训练与数据配置
+experiment_name: exp1
+save_dir: runs
+
+seed: 42
+device: "cuda"   # "cuda" 或 "cpu"
+
+# 指向 Kvasir-SEG 根目录（其下应含 images/ 与 masks/）
+dataset_dir: 'D:\Kvasir-SEG-Project\data\kvasir-seg'
+
+# 训练图像尺寸（会进行 Resize）
+img_size: 256
+
+# DataLoader
+batch_size: 8
+num_workers: 4
+pin_memory: true
+
+# 训练
+epochs: 50
+learning_rate: 3e-4
+weight_decay: 1e-4
+optimizer: "adamw"          # adam / adamw / sgd
+scheduler: "cosine"          # none / step / cosine
+mixed_precision: true        # AMP
+val_every: 1                 # 每多少个 epoch 验证一次
+early_stop_patience: 15
+
+# 损失函数
+loss: "bce_dice"             # bce / dice / bce_dice
+
+# 预测
+threshold: 0.5               # 概率阈值
